@@ -1,0 +1,3 @@
+[2020-11-13 09:19:10,737][MainThread:26564][task_id:django.utils.autoreload][autoreload.py:597][INFO][Watching for file changes with StatReloader]
+[2020-11-13 17:12:02,372][MainThread:24532][task_id:django.utils.autoreload][autoreload.py:597][INFO][Watching for file changes with StatReloader]
+[2020-11-14 10:36:58,521][MainThread:17972][task_id:django.utils.autoreload][autoreload.py:597][INFO][Watching for file changes with StatReloader]

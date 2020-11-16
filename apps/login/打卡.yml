@@ -1,0 +1,109 @@
+1.http://xxx.com/query
+请求方式:GET
+参数:student_number(char)  学工号  password(char) 学工号密码
+返回示例：{'code':1,'msg':'账号或密码必须填写完整','data':{}}
+code(int):状态码 0成功,1账号密码不完整,2账号密码错误
+msg(char):消息
+data(dict):数据
+  -expire:到期时间字符串
+
+2.http://xx.com/register
+请求方式:POST
+参数:username(char)名字  student_number(char)学工号  password(char)密码  code(char)激活码  email(char)邮箱 school(char)学校名
+time(int)查寝时间 7,8,9,930,10,1030(对应7点,8点,9点,9点30,10点,10点30 查寝) photo(自拍图片名数组,没有则为空数组)
+-返回示例:
+  {
+      "code": 2,
+      "msg": "发生错误",
+      "data": {
+          "username": [
+              "名字不允许为空"
+          ],
+          "student_number": [
+              "学工号不允许为空"
+          ],
+          "password": [
+              "密码不允许为空"
+          ],
+          "email": [
+              "邮箱不允许为空"
+          ]
+      }
+  }
+code(int):状态码 0成功 1直接显示msg,2显示data里的验证出错数据
+msg(char):消息
+
+3.http://xx.com/code
+请求方式:GET
+参数:type(int) 10表示10元激活码,30表示30元激活码
+返回示例:{'code':0,'msg':'10元激活码生成成功','data':{'code':code}}
+code(int):0表示成功,1表示失败
+msg(char):消息
+data(dict):数据
+  -code:激活码的值
+
+4.http://xx.com/try
+请求方式:POST
+参数:username(char)名字  student_number(char)学工号  password(char)密码 email(char)邮箱  school(char)学校名
+  time(int)查寝时间 7,8,9,930,10,1030(对应7点,8点,9点,9点30,10点,10点30 查寝)  photo(自拍图片名数组,没有图片则为数组)
+返回示例:
+{
+    "code": 2,
+    "msg": "发生错误",
+    "data": {
+        "username": [
+            "名字不允许为空"
+        ],
+        "student_number": [
+            "学工号不允许为空"
+        ],
+        "password": [
+            "密码不允许为空"
+        ],
+        "email": [
+            "邮箱不允许为空"
+        ]
+    }
+}
+code 0表示成功,1直接显示msg,2显示data字典里的验证出错数据
+msg:消息
+
+
+5.http://xx.com/upload
+参数:image(base64编码的图片字符串组成的数组)
+请求方式:POST(参数类型json)
+返回示例：
+{
+    "code": 0,
+    "msg": "图片上传成功",
+    "data": {
+        "image_name": ['be491f2d78c443d1ada24d0934d8e9c7.jpeg','ccea7a3283534f8a815ca0342d1a00a9.jpeg']
+    }
+}
+
+code(int) 0表示成功,1表示失败
+msg(char) 消息
+data(字典) 字典
+ - image_name 图片名数组,用于试用或者激活的photo字段
+
+
+6.http://xx.com/alter
+参数:student_number(char)学工号  password(char)密码    status(int)打卡状态,0为暂停打卡,1为正常打卡 默认为0
+    photo(自拍图片名数组,没有图片则为空数组)默认为空数组   location(int) 打卡地点,0为在学校,1为自定义
+    address(char) 用户地址
+请求方式:POST
+返回示列:
+{
+    "code": 2,
+    "msg": "发生错误",
+    "data": {
+        "status": [
+            "状态选择不符合"
+        ],
+        "photo": [
+            "不存在该图片"
+        ]
+    }
+}
+code(int):状态码 0成功 1直接显示msg,2显示data里的验证出错数据
+msg(char):消息
